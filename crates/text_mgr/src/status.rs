@@ -22,7 +22,7 @@ pub fn startup_game_status(
         TextBundle::from_sections([
             TextSection::new("FPS:", text_style.clone()),
             TextSection::new("00.00", text_style.clone()),
-            TextSection::new(" AVG-FPS:", text_style.clone()),
+            TextSection::new(" FPS_AVG:", text_style.clone()),
             TextSection::new("00.00", text_style.clone()),
         ])
         .with_text_justify(text_justification)

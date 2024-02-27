@@ -10,4 +10,4 @@ bevy = "0.13.0"
 
 [[example]]
 name = "example"
-path = "src/example.rs"
+path = "examples/example1.rs"
