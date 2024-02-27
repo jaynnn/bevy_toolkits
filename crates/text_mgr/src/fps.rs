@@ -11,7 +11,6 @@ pub fn startup_fps(
     asset_server: Res<AssetServer>,
     mut cmds: Commands,
 ) {
-    cmds.spawn(Camera2dBundle::default());
     let font = asset_server.load::<Font>("fonts/Arimo-Regular.ttf");
     let text_style = TextStyle {
         font: font.clone(),
