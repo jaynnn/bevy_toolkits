@@ -4,9 +4,9 @@ use bevy::{
     },
     diagnostic::FrameTimeDiagnosticsPlugin,
 };
-use fps::{startup_fps, update_fps};
+use status::{startup_game_status, update_game_status};
 
-mod fps;
+mod status;
 
 pub struct TextMgrPlugin;
 
@@ -16,7 +16,7 @@ impl Plugin for TextMgrPlugin {
         .add_plugins(
             FrameTimeDiagnosticsPlugin::default(),
         )
-        .add_systems(Startup, startup_fps)
-        .add_systems(Update, update_fps);
+        .add_systems(Startup, startup_game_status)
+        .add_systems(Update, update_game_status);
     }
 }

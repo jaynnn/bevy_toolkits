@@ -5,9 +5,9 @@ use bevy::{
 };
 
 #[derive(Component)]
-pub struct FpsText;
+pub struct StatusText;
 
-pub fn startup_fps(
+pub fn startup_game_status(
     asset_server: Res<AssetServer>,
     mut cmds: Commands,
 ) {
@@ -20,8 +20,10 @@ pub fn startup_fps(
     let text_justification = JustifyText::Center;
     cmds.spawn((
         TextBundle::from_sections([
-            TextSection::new("FPS: ", text_style.clone()),
-            TextSection::new("00.00", text_style),
+            TextSection::new("FPS:", text_style.clone()),
+            TextSection::new("00.00", text_style.clone()),
+            TextSection::new(" AVG-FPS:", text_style.clone()),
+            TextSection::new("00.00", text_style.clone()),
         ])
         .with_text_justify(text_justification)
         .with_style(Style {
@@ -33,18 +35,21 @@ pub fn startup_fps(
             },
             ..default()
         }),
-        FpsText
+        StatusText
     ));
 }
 
-pub fn update_fps(
+pub fn update_game_status(
     diagnostics: Res<DiagnosticsStore>,
-    mut query: Query<&mut Text, With<FpsText>>,
+    mut query: Query<&mut Text, With<StatusText>>,
 ) {
-    for mut text in &mut query {
+    for mut text in query.iter_mut() {
         if let Some(fps) = diagnostics.get(&FrameTimeDiagnosticsPlugin::FPS) {
-            if let Some(value) = fps.smoothed() {
-                text.sections[1].value = format!("{value:.2}");
+            if let Some(raw) = fps.value() {
+                text.sections[1].value = format!("{raw:.2}");
+            }
+            if let Some(avg) = fps.average() {
+                text.sections[3].value = format!("{avg:.2}");
             }
         }
     }
