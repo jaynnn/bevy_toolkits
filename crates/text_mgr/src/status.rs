@@ -35,7 +35,8 @@ pub fn startup_game_status(
             },
             ..default()
         }),
-        StatusText
+        StatusText,
+        Name::new("game_status")
     ));
 }
 
