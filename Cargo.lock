@@ -927,6 +927,9 @@ dependencies = [
 [[package]]
 name = "bevy_toolkits"
 version = "0.1.0"
+dependencies = [
+ "text_mgr",
+]
 
 [[package]]
 name = "bevy_transform"

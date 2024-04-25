@@ -1,4 +1,2 @@
-
-
 #[cfg(feature = "text_mgr")]
-pub use TextMgrPlugin;
+pub use text_mgr;
