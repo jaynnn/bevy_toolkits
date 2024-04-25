@@ -16,3 +16,6 @@ members = [
 
 [profile.dev.package."*"]
 opt-level = 3
+
+[features]
+text_mgr = ["text_mgr"]
