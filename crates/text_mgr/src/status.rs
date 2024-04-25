@@ -20,12 +20,14 @@ pub fn startup_game_status(
     let text_justification = JustifyText::Center;
     cmds.spawn((
         TextBundle::from_sections([
-            TextSection::new("FPS:", text_style.clone()),
+            TextSection::new("FPS[cur=", text_style.clone()),
             TextSection::new("00.00", text_style.clone()),
-            TextSection::new(" FPS_AVG:", text_style.clone()),
+            TextSection::new(", avg=", text_style.clone()),
             TextSection::new("00.00", text_style.clone()),
+            TextSection::new("]", text_style.clone()),
         ])
         .with_text_justify(text_justification)
+        .with_background_color(Color::BLACK)
         .with_style(Style {
             position_type: PositionType::Absolute,
             margin: UiRect {
@@ -33,10 +35,12 @@ pub fn startup_game_status(
                 top: Val::Px(10.0),
                 ..default()
             },
+            align_self: AlignSelf::Stretch,
+            justify_self: JustifySelf::Stretch,
             ..default()
         }),
         StatusText,
-        Name::new("game_status")
+        Name::new("game_status"),
     ));
 }
 
